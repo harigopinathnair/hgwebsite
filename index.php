@@ -599,7 +599,7 @@
 <section class="final-cta" id="contact">
   <div class="container grid-2 gap-5 align-center">
     <div class="cta-text">
-      <div class="tag">Direct Strategist Access</div>
+      <div class="tag">Direct Consultation</div>
       <h2 style="font-size: 3.5rem;">Stop Guessing.<br>Start Scaling.</h2>
     </div>
     <div class="cta-form-box">
