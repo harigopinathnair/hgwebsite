@@ -1,26 +1,12 @@
 <?php
-/**
- * Mailgun notification helper
- * Sends a lead alert email to rankmonk@gmail.com
- */
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/config.php';
 
-$_mailer_autoload = __DIR__ . '/vendor/autoload.php';
-if (file_exists($_mailer_autoload)) {
-    require_once $_mailer_autoload;
-}
-
-if (file_exists(__DIR__ . '/config.php')) {
-    require_once __DIR__ . '/config.php';
-}
-
-use Mailgun\Mailgun;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 function send_lead_notification(array $lead): void {
-    if (!class_exists('Mailgun\Mailgun')) return;
-
-    $mg     = Mailgun::create(defined('MAILGUN_API_KEY') ? MAILGUN_API_KEY : '');
-    $domain = defined('MAILGUN_DOMAIN') ? MAILGUN_DOMAIN : '';
-
     $name      = $lead['name']      ?? '—';
     $email     = $lead['email']     ?? '—';
     $phone     = $lead['phone']     ?? '—';
@@ -28,22 +14,9 @@ function send_lead_notification(array $lead): void {
     $budget    = $lead['budget']    ?? '—';
     $goal      = $lead['goal']      ?? '—';
     $challenge = $lead['challenge'] ?? '—';
+    $plan      = $lead['pricing_plan'] ?? '—';
 
     $source_label = $source === 'audit' ? 'Free Audit Form' : 'Contact Form';
-
-    $text = <<<TEXT
-New lead received on HariGopinath.com
-
-Name      : {$name}
-Email     : {$email}
-Phone     : {$phone}
-Source    : {$source_label}
-Budget    : {$budget}
-Challenge : {$challenge}
-Goal      : {$goal}
-
-View in CRM: http://localhost/harippc/admin/crm.php
-TEXT;
 
     $html = <<<HTML
 <!DOCTYPE html>
@@ -60,12 +33,13 @@ TEXT;
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="mailto:{$email}" style="color:#FF7A59;">{$email}</a></td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$phone}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Source</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$source_label}</td></tr>
+      <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Plan</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$plan}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Budget</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$budget}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Challenge</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$challenge}</td></tr>
       <tr><td style="padding:8px 0;font-weight:700;vertical-align:top;">Goal</td><td style="padding:8px 0;">{$goal}</td></tr>
     </table>
     <div style="margin-top:28px;">
-      <a href="http://localhost/harippc/admin/crm.php"
+      <a href="https://harigopinath.com/admin/crm.php"
          style="display:inline-block;padding:12px 28px;background:#FF7A59;color:#fff;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.95rem;">
         View in CRM &rarr;
       </a>
@@ -80,15 +54,27 @@ TEXT;
 HTML;
 
     try {
-        $mg->messages()->send($domain, [
-            'from'    => 'HariGopinath.com <postmaster@' . $domain . '>',
-            'to'      => 'Hari Gopinath <' . (defined('NOTIFY_EMAIL') ? NOTIFY_EMAIL : '') . '>',
-            'subject' => '🔔 New Lead: ' . $name . ' via ' . $source_label,
-            'text'    => $text,
-            'html'    => $html,
-        ]);
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = SMTP_USER;
+        $mail->Password   = SMTP_PASS;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = SMTP_PORT;
+
+        $mail->setFrom(SMTP_FROM, 'HariGopinath.com');
+        $mail->addAddress(NOTIFY_EMAIL, 'Hari Gopinath');
+        $mail->addReplyTo($email, $name);
+
+        $mail->isHTML(true);
+        $mail->Subject = '🔔 New Lead: ' . $name . ' via ' . $source_label;
+        $mail->Body    = $html;
+        $mail->AltBody = "New lead: {$name} | {$email} | {$phone} | {$source_label} | Plan: {$plan}";
+
+        $mail->send();
     } catch (Exception $e) {
-        // Silently fail — don't break the user-facing success page
-        error_log('Mailgun error: ' . $e->getMessage());
+        error_log('Mailer error: ' . $mail->ErrorInfo);
     }
 }

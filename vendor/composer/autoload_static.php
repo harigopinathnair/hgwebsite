@@ -34,6 +34,7 @@ class ComposerStaticInitc14deab66b8a3293bb99b8d79b402960
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' =>
         array (
@@ -103,6 +104,10 @@ class ComposerStaticInitc14deab66b8a3293bb99b8d79b402960
         'Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Nyholm\\Psr7\\' =>
         array (
