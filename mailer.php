@@ -64,7 +64,7 @@ HTML;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = SMTP_PORT;
 
-        $mail->setFrom(SMTP_FROM, 'HariGopinath.com');
+        $mail->setFrom(SMTP_FROM, defined('SMTP_FROM_NAME') ? SMTP_FROM_NAME : 'HariGopinath.com');
         $mail->addAddress(NOTIFY_EMAIL, 'Hari Gopinath');
         $mail->addReplyTo($email, $name);
 

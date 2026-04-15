@@ -637,8 +637,8 @@
       <p class="opacity-70">Deep-dive growth strategies and market attribution insights delivered to your inbox every fortnight. No fluff. Just data.</p>
     </div>
     <div class="nl-form">
-      <form class="d-flex">
-        <input type="email" placeholder="Enter your work email" required class="nl-input">
+      <form class="d-flex" method="POST" action="newsletter.php">
+        <input type="email" name="email" placeholder="Enter your work email" required class="nl-input">
         <button type="submit" class="btn btn-orange">Subscribe Free</button>
       </form>
     </div>

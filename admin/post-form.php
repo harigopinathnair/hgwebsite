@@ -181,6 +181,7 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
       <a href="posts.php" class="nav-item">Posts</a>
       <a href="post-form.php" class="nav-item <?= $mode === 'new' ? 'active' : '' ?>">New Post</a>
       <a href="crm.php" class="nav-item">CRM</a>
+      <a href="subscribers.php" class="nav-item">Subscribers</a>
       <a href="../index.php" class="nav-item" target="_blank">View Site</a>
     </nav>
     <div class="sidebar-footer">

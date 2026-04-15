@@ -217,6 +217,7 @@ function source_badge(string $s): string {
       <a href="posts.php" class="nav-item">Posts</a>
       <a href="post-form.php" class="nav-item">New Post</a>
       <a href="crm.php" class="nav-item active">CRM</a>
+      <a href="subscribers.php" class="nav-item">Subscribers</a>
       <a href="../index.php" class="nav-item" target="_blank">View Site</a>
     </nav>
     <div class="sidebar-footer">
