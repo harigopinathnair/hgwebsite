@@ -1,12 +1,17 @@
-<?php require_once 'db.php'; ?>
+﻿<?php require_once 'db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HariGopinath.com | Performance Digital Marketing & SEO</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style-2040.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
 
@@ -43,7 +48,7 @@
   <div class="container hero-split">
     <div class="hero-text">
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem;">
-        <div class="tag" style="border-color: rgba(255,255,255,0.2); color: #fff; margin-bottom: 0;">Performance SEO &amp; Growth</div>
+        <div class="tag" style="border-color: var(--text-dark); color: var(--text-dark); background: transparent; margin-bottom: 0;">Performance SEO &amp; Growth</div>
         <div class="tag" style="background: var(--orange); border-color: var(--orange); color: #fff; margin-bottom: 0;">2x Published Author &amp; Mentor</div>
       </div>
       <h1 style="margin-top: 0;">RESULTS.<br>NOT<br>REPORTS.</h1>
@@ -65,15 +70,18 @@
         <input type="hidden" name="utm_campaign" class="utm-campaign">
         <input type="hidden" name="utm_content" class="utm-content">
         <input type="hidden" name="pricing_plan" class="pricing-plan">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Work Email" required>
-        <input type="tel" name="phone" placeholder="Phone / WhatsApp">
-        <select name="budget" required>
-          <option value="" disabled selected>Monthly Budget</option>
-          <option>Under ₹1L</option>
-          <option>₹1L - ₹5L</option>
-          <option>₹5L+</option>
-        </select>
+        <div class="audit-form-grid">
+          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Work Email" required>
+          <input type="tel" name="phone" placeholder="Phone / WhatsApp">
+          <select name="budget" required>
+            <option value="" disabled selected>Monthly Budget</option>
+            <option>Under $1,000</option>
+            <option>$1,000 - $5,000</option>
+            <option>$5,000 - $10,000</option>
+            <option>$10,000+</option>
+          </select>
+        </div>
         <input type="text" name="goal" placeholder="Primary Goal">
         <button type="submit" class="btn btn-primary btn-block">Send My Free Audit &rarr;</button>
         <div class="form-secure">🔒 100% confidential. No spam, ever.</div>
@@ -142,37 +150,58 @@
       <span>Satbir International</span>
     </div>
   </div>
-  <div class="container text-center mt-5">
-    <div style="font-size:2rem;">👇</div>
-  </div>
+  <div class="container text-center mt-5"></div>
 </section>
 
 <!-- PAIN POINTS -->
-<section class="pain-points section-white" style="padding-top: 5rem;">
-  <div class="container grid-2 align-center">
-    <div class="pain-title">
-      <div class="tag">The Opportunity</div>
-      <h2 style="font-size: 3rem; margin-bottom: 0;">Turn Your Marketing<br>Into A Predictable<br>Revenue Engine.</h2>
-    </div>
-    <div class="pain-list">
-      <ul>
-        <li>You're spending more on ads but your profit margins keep shrinking</li>
-        <li>SEO traffic is up, but qualified leads haven't moved</li>
-        <li>Monthly reports are full of impressions and clicks — not revenue</li>
-        <li>No one can tell you which channel is actually driving growth</li>
-        <li>PPC, SEO, and content teams operate in total silos</li>
-        <li>You've outgrown your agency but don't know where to go next</li>
-      </ul>
+<section class="pain-points">
+  <div class="container">
+    <div class="pain-inner">
+
+      <div class="pain-title">
+        <span class="pain-eyebrow">The Opportunity</span>
+        <h2 class="pain-headline">Turn Your Marketing Into A Predictable Revenue Engine.</h2>
+        <p class="pain-sub">Most brands track impressions. The ones that scale track revenue. Let's fix the gap.</p>
+        <a href="#contact" class="btn btn-primary pain-cta">Let's Fix This &rarr;</a>
+      </div>
+
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>You're spending more on ads but your profit margins keep shrinking</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>SEO traffic is up, but qualified leads haven't moved</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>Monthly reports are full of impressions and clicks, not revenue</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>No one can tell you which channel is actually driving growth</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>PPC, SEO, and content teams operate in total silos</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-x">✕</div>
+          <p>You've outgrown your agency but don't know where to go next</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- WHAT WE DO -->
-<section class="what-we-do section-navy">
-  <div class="container text-center text-white">
+<section class="what-we-do section-gray">
+  <div class="container text-center">
     <div class="tag text-orange">What I do</div>
-    <h2 class="text-white" style="font-size:2.8rem; margin-bottom: 1.5rem;">I help ambitious brands grow their SEO traffic</h2>
-    <p class="max-w-700 opacity-70 mx-auto" style="font-size:1.1rem; margin-bottom:15px; padding-bottom:15px;">Most brands pour budget into ads, sponsorships, email, and social — yet very few build the one channel that compounds over time and costs nothing to maintain. In my experience, the brands that consistently produce high-quality, SEO-optimized content are the ones with the most resilient traffic — no matter what else they're spending on.</p>
+    <h2 style="font-size:2.8rem; margin-bottom: 1.5rem;">I help ambitious brands grow their SEO traffic</h2>
+    <p class="max-w-700 mx-auto" style="font-size:1.1rem; margin-bottom:15px; padding-bottom:15px;">Most brands pour budget into ads, sponsorships, email, and social, yet very few build the one channel that compounds over time and costs nothing to maintain. In my experience, the brands that consistently produce high-quality, SEO-optimized content are the ones with the most resilient traffic, no matter what else they're spending on.</p>
     
     <!-- GSC Stats Cards -->
     <div class="gsc-stats mt-5">
@@ -208,7 +237,7 @@
         <span class="gsc-chart-title">Google Search Console &mdash; Clicks &amp; Impressions</span>
         <span class="gsc-chart-date">As of 10/04/2026</span>
       </div>
-      <img src="uploads/casestudy-01-img.png" alt="Google Search Console — clicks & impressions growth chart" class="gsc-chart-img">
+      <img src="uploads/casestudy-01-img.png" alt="Google Search Console, clicks & impressions growth chart" class="gsc-chart-img">
     </div>
 
     <!-- Insights -->
@@ -217,7 +246,7 @@
         <div class="gsc-insight-icon">&#128200;</div>
         <div>
           <h4>Traffic compounded 67% in 6 months</h4>
-          <p>Clicks grew from 10.8K to 18.1K — without increasing ad spend. Pure organic compounding driven by intent-matched content and technical SEO.</p>
+          <p>Clicks grew from 10.8K to 18.1K, without increasing ad spend. Pure organic compounding driven by intent-matched content and technical SEO.</p>
         </div>
       </div>
       <div class="gsc-insight">
@@ -230,8 +259,8 @@
       <div class="gsc-insight">
         <div class="gsc-insight-icon">&#9889;</div>
         <div>
-          <h4>243K impressions — brand visibility at scale</h4>
-          <p>Impressions surged 70% in six months, meaning the brand now appears in search results for 70% more queries than before — building authority across the entire funnel.</p>
+          <h4>243K impressions, brand visibility at scale</h4>
+          <p>Impressions surged 70% in six months, meaning the brand now appears in search results for 70% more queries than before, building authority across the entire funnel.</p>
         </div>
       </div>
     </div>
@@ -248,7 +277,7 @@
       <div class="case-study-header">
         <div class="case-study-label">Case Study</div>
         <h3 class="case-study-title">E-Commerce Brand &mdash; Organic Growth at Scale</h3>
-        <p class="case-study-desc">A large-scale e-commerce brand with an established catalogue. We rebuilt their SEO architecture from the ground up — category pages, PDP optimisation, and a programmatic content layer that compounded traffic month over month.</p>
+        <p class="case-study-desc">A large-scale e-commerce brand with an established catalogue. We rebuilt their SEO architecture from the ground up, category pages, PDP optimisation, and a programmatic content layer that compounded traffic month over month.</p>
       </div>
 
       <!-- Stats Cards -->
@@ -293,22 +322,22 @@
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#128293;</div>
           <div>
-            <h4>12.7M clicks — 3&times; growth in 6 months</h4>
-            <p>Clicks surged from 4.09M to 12.7M in a single period — driven by category-level keyword clustering and product page schema that unlocked rich results.</p>
+            <h4>12.7M clicks, 3&times; growth in 6 months</h4>
+            <p>Clicks surged from 4.09M to 12.7M in a single period, driven by category-level keyword clustering and product page schema that unlocked rich results.</p>
           </div>
         </div>
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#127760;</div>
           <div>
-            <h4>951M impressions — top-of-funnel dominance</h4>
-            <p>Nearly 1 billion search impressions in 6 months. The brand now appears for virtually every commercial intent query in their vertical — building brand recall before the click.</p>
+            <h4>951M impressions, top-of-funnel dominance</h4>
+            <p>Nearly 1 billion search impressions in 6 months. The brand now appears for virtually every commercial intent query in their vertical, building brand recall before the click.</p>
           </div>
         </div>
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#128200;</div>
           <div>
-            <h4>Position 10.5 → 7.7 — page 1 consolidation</h4>
-            <p>A 27% improvement in average position pushed hundreds of product and category pages from the bottom of page 1 into the top 5 — where 75% of all clicks happen.</p>
+            <h4>Position 10.5 → 7.7, page 1 consolidation</h4>
+            <p>A 27% improvement in average position pushed hundreds of product and category pages from the bottom of page 1 into the top 5, where 75% of all clicks happen.</p>
           </div>
         </div>
       </div>
@@ -369,21 +398,21 @@
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#127857;</div>
           <div>
-            <h4>Clicks up 81% — from 679 to 1.23K</h4>
-            <p>By targeting high-intent recipe and product comparison keywords, organic clicks nearly doubled without any increase in ad spend — purely through content and on-page optimisation.</p>
+            <h4>Clicks up 81%, from 679 to 1.23K</h4>
+            <p>By targeting high-intent recipe and product comparison keywords, organic clicks nearly doubled without any increase in ad spend, purely through content and on-page optimisation.</p>
           </div>
         </div>
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#128269;</div>
           <div>
-            <h4>58.2K impressions — 64% more visibility</h4>
-            <p>Impressions grew from 35.4K to 58.2K as new content covered a wider range of buyer queries across the funnel — from awareness-stage recipes to bottom-of-funnel product searches.</p>
+            <h4>58.2K impressions, 64% more visibility</h4>
+            <p>Impressions grew from 35.4K to 58.2K as new content covered a wider range of buyer queries across the funnel, from awareness-stage recipes to bottom-of-funnel product searches.</p>
           </div>
         </div>
         <div class="gsc-insight">
           <div class="gsc-insight-icon">&#127942;</div>
           <div>
-            <h4>Position 14.5 → 10.2 — crossed onto page 1</h4>
+            <h4>Position 14.5 → 10.2, crossed onto page 1</h4>
             <p>Average position improved by 30%, moving the brand from deep page 2 to the first page of Google. A single page boundary shift that transforms click-through rates overnight.</p>
           </div>
         </div>
@@ -393,31 +422,57 @@
   </div>
 </section>
 
-<!-- EXTENDED ABOUT (Who am I?) -->
-<section class="extended-about" id="about">
-  <div class="container">
-    <div class="tag">Who am I?</div>
-    <div class="grid-2 align-start mt-3">
-      <div class="about-left">
-        <img src="uploads/hari-photo.png" alt="Hari Gopinath" class="about-photo" style="-webkit-transform:scaleX(-1);transform:scaleX(-1);padding:30px;">
-        <div class="founder-stats grid-2 mt-4 pt-4 border-top">
-          <div class="f-stat"><div class="num">1,000+</div><div class="label">Blog posts published</div></div>
-          <div class="f-stat"><div class="num">3.6M+</div><div class="label">Organic clicks generated</div></div>
-          <div class="f-stat"><div class="num">$16.2M+</div><div class="label">Generated in traffic value</div></div>
-          <div class="f-stat"><div class="num">∞</div><div class="label">Cups of coffee drank</div></div>
-        </div>
-      </div>
-      <div class="about-right" style="padding-top: 1rem;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Hey there 👋!</h2>
-        <p class="lead text-dark" style="font-size: 1.25rem; font-weight: 500; margin-bottom: 1.5rem;">I'm Hari — an artist, writer ✍️, marketer 📈, and absolute SEO fanatic 💻.</p>
-        <p class="mb-3" style="font-size: 1.05rem; color: var(--text-light);">After an incredible run leading SEO and content marketing strategies for massive brands across India, the UAE, and the US, I channeled all my core learnings into building this dedicated growth engine.</p>
-        <p class="mb-3" style="font-size: 1.05rem; color: var(--text-light);">In recent years, my strategies have reached millions of readers. Along the way, I engineered a highly repeatable, battle-tested framework for ambitious brands to consistently scale their revenue through organic search.</p>
-        <p class="mb-3" style="font-size: 1.05rem; color: var(--text-light);">I live and breathe content and performance marketing. By staying deeply involved in an active growth community, my finger is always on the pulse of industry shifts — especially when navigating the future of SEO and the rise of AI-driven search.</p>
+<!-- ABOUT -->
+<section class="about-section" id="about">
 
-        <p class="mb-4" style="font-size: 1.05rem; color: var(--text-light);">At best, we build a seamless partnership to launch and aggressively scale your organic growth. At worst, you walk away from our strategy sessions equipped with an exact, actionable roadmap to dominate your market.</p>
-      </div>
+  <div class="about-photo-col">
+    <div class="about-photo-frame">
+      <img src="uploads/hari-photo.png" alt="Hari Gopinath">
     </div>
   </div>
+
+  <div class="about-content-col">
+    <div class="about-header">
+      <span class="about-eyebrow">Who am I?</span>
+      <h2 class="about-name">Hello, I'm Hari.</h2>
+      <p class="about-lead">Artist, writer, marketer, and a committed SEO strategist with over a decade in the craft.</p>
+    </div>
+
+    <div class="about-body">
+      <p>I've led SEO and content strategy for major brands across India, the UAE, and the US, channeling those learnings into a repeatable, battle-tested framework that consistently scales organic revenue.</p>
+      <p>I live at the intersection of content and performance marketing, with my finger on the pulse of AI-driven search shifts every single day.</p>
+    </div>
+
+    <div class="about-tags">
+      <span class="about-tag">🇮🇳 India</span>
+      <span class="about-tag">🇦🇪 UAE</span>
+      <span class="about-tag">🇺🇸 US</span>
+      <span class="about-tag">14+ Years</span>
+      <span class="about-tag">2× Author</span>
+      <span class="about-tag">Google Certified</span>
+    </div>
+
+    <div class="about-stats">
+      <div class="as-stat">
+        <span class="as-num">1,000+</span>
+        <span class="as-label">Posts Published</span>
+      </div>
+      <div class="as-stat">
+        <span class="as-num">3.6M+</span>
+        <span class="as-label">Organic Clicks</span>
+      </div>
+      <div class="as-stat">
+        <span class="as-num">$16M+</span>
+        <span class="as-label">Traffic Value</span>
+      </div>
+      <div class="as-stat">
+        <span class="as-num">50+</span>
+        <span class="as-label">Brands Scaled</span>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
 <!-- WHAT WE OFFER -->
@@ -448,28 +503,67 @@
 </section>
 
 <!-- NOT YOUR TYPICAL AGENCY -->
-<section class="offer-section border-top">
-  <div class="container text-center">
-    <div class="tag">Why Hari Gopinath</div>
-    <h2 style="font-size: 2.8rem; margin-bottom: 2rem;">Not your typical SEO/content<br>marketing agency</h2>
-    
-    <div class="grid-2 mt-5 text-left gap-5">
-      <div class="feature-row">
-        <h4>No contracts</h4>
-        <p>Say goodbye to monthly retainers. I am an SEO strategy expert that does not tie you down into a contract. If you don't like my approach, you can easily part ways.</p>
+<section class="why-section">
+  <div class="container">
+
+    <div class="why-header">
+      <div>
+        <span class="why-eyebrow">Why Hari Gopinath</span>
+        <h2 class="why-headline">Not your typical<br>SEO agency.</h2>
       </div>
-      <div class="feature-row">
-        <h4>More than just content</h4>
-        <p>All of my packages include backlinks. This means you're not only getting great content, but also mentions on other websites that will grow your domain authority and traffic — key for ranking in AI search and ChatGPT.</p>
+      <p class="why-subhead">Four things that make every engagement different from day one.</p>
+    </div>
+
+    <div class="why-list">
+
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+        </div>
+        <div class="why-body">
+          <h3>No contracts</h3>
+          <p>Say goodbye to monthly retainers. If you don't like my approach, you can easily part ways, no lock-ins, no penalties, no friction.</p>
+        </div>
+        <span class="why-tag-right">Flexibility</span>
       </div>
-      <div class="feature-row">
-        <h4>In good hands</h4>
-        <p>Your account is handled directly by me, an SEO and content expert who has taken several projects to hundreds of thousands of visitors a month.</p>
+
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="why-body">
+          <h3>More than just content</h3>
+          <p>Every package includes backlinks, mentions on authoritative websites that grow your domain authority and make you visible in AI search and ChatGPT.</p>
+        </div>
+        <span class="why-tag-right">Authority</span>
       </div>
-      <div class="feature-row">
-        <h4>A focus on SEO</h4>
-        <p>Each article you receive is SEO-optimized and written for humans and search engines. I've released over 1,000 blog posts and have found the right way to write for Google (so you can also show up in AI search engines).</p>
+
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="why-body">
+          <h3>In good hands</h3>
+          <p>Your account is handled directly by me, not outsourced, not delegated. I've taken multiple projects from zero to hundreds of thousands of monthly visitors.</p>
+        </div>
+        <span class="why-tag-right">Direct Access</span>
       </div>
+
+      <div class="why-item">
+        <span class="why-num">04</span>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <div class="why-body">
+          <h3>A focus on SEO</h3>
+          <p>Every piece is SEO-optimised and written for humans and search engines alike. 1,000+ posts published, I know exactly what it takes to rank on Google and get cited by AI.</p>
+        </div>
+        <span class="why-tag-right">Performance</span>
+      </div>
+
     </div>
   </div>
 </section>
@@ -492,7 +586,7 @@
         <div class="price-service-label">Performance Scale</div>
         <h3 class="price-card-name">Accelerator</h3>
         <p class="desc">Profitable paid media acquisition built around strictly defined ROI targets.</p>
-        <a href="#contact" class="btn btn-outline btn-block mb-4 plan-select" data-plan="Performance Scale — Accelerator">Get Started</a>
+        <a href="#contact" class="btn btn-outline btn-block mb-4 plan-select" data-plan="Performance Scale, Accelerator">Get Started</a>
         <ul class="features">
           <li>Meta &amp; Google Ads Management</li>
           <li>Custom Attribution Dashboard</li>
@@ -502,13 +596,13 @@
         </ul>
       </div>
 
-      <!-- Organic Growth — centre / featured -->
+      <!-- Organic Growth, centre / featured -->
       <div class="price-card popular">
         <div class="pop-tag">Most Popular</div>
         <div class="price-service-label">Organic Growth</div>
         <h3 class="price-card-name">SEO Engine</h3>
         <p class="desc">Long-term organic traffic compounds and builds sustainable market authority.</p>
-        <a href="#contact" class="btn btn-primary btn-block mb-4 plan-select" data-plan="Organic Growth — SEO Engine">Get Started</a>
+        <a href="#contact" class="btn btn-primary btn-block mb-4 plan-select" data-plan="Organic Growth, SEO Engine">Get Started</a>
         <ul class="features">
           <li>Revenue-focused Keyword Research</li>
           <li>Technical SEO Governance</li>
@@ -540,10 +634,10 @@
       <div class="suite-banner-left">
         <div class="suite-eyebrow">THE COMPLETE</div>
         <h3 class="suite-title">GROWTH SUITE</h3>
-        <p class="suite-desc">SEO + PPC + CRO + Attribution — fully unified. One strategy. One partner. One revenue goal. Built for brands ready to cross the ₹100Cr mark.</p>
+        <p class="suite-desc">SEO + PPC + CRO + Attribution, fully unified. One strategy. One partner. One revenue goal. Built for brands ready to cross the ₹100Cr mark.</p>
       </div>
       <div class="suite-banner-right">
-        <a href="#contact" class="btn btn-white plan-select" data-plan="Growth Suite — All-in-One">Start the Suite &rarr;</a>
+        <a href="#contact" class="btn btn-white plan-select" data-plan="Growth Suite, All-in-One">Start the Suite &rarr;</a>
       </div>
     </div>
 
@@ -554,56 +648,58 @@
 <section class="free-post-cta text-center" style="padding: 6rem 0;">
   <div class="container border-top pt-5">
     <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Not sure where to start?<br>Book a free SEO strategy call.</h2>
-    <p class="lead mt-3 mx-auto max-w-700" style="font-size: 1.15rem; color: var(--text-light);">In 30 minutes, I’ll audit your current organic presence and hand you a clear, actionable roadmap — no fluff, no pitch, just strategy.</p>
+    <p class="lead mt-3 mx-auto max-w-700" style="font-size: 1.15rem; color: var(--text-light);">In 30 minutes, I’ll audit your current organic presence and hand you a clear, actionable roadmap, no fluff, no pitch, just strategy.</p>
     <a href="#contact" class="btn btn-primary mt-4">Book My Free Strategy Call &rarr;</a>
   </div>
 </section>
 
 <!-- PROCESS -->
-<section class="process-section section-navy text-white pb-5">
+<section class="process-section section-gray pb-5">
   <div class="container pt-5">
     <div class="section-head text-center">
       <div class="tag text-orange">My Process</div>
-      <h2 class="text-white" style="font-size: 2.8rem;">HOW I BUILD YOUR<br>REVENUE ENGINE.</h2>
+      <h2 style="font-size: 2.8rem;">HOW I BUILD YOUR<br>REVENUE ENGINE.</h2>
     </div>
     <div class="process-steps mt-5">
       <div class="step">
-        <div class="step-num text-white opacity-50" style="position:relative;top:0;">01</div>
+        <div class="step-num" style="position:relative;top:0;">01</div>
         <div class="step-label">DISCOVER</div>
         <h4>Deep Diagnostic</h4>
-        <p class="text-white opacity-70">I audit your SEO, paid accounts, funnels, and analytics. I find waste, gaps, and the highest-leverage opportunities before you spend a rupee.</p>
+        <p>I audit your SEO, paid accounts, funnels, and analytics. I find waste, gaps, and the highest-leverage opportunities before you spend a rupee.</p>
       </div>
       <div class="step">
-        <div class="step-num text-white opacity-50" style="position:relative;top:0;">02</div>
+        <div class="step-num" style="position:relative;top:0;">02</div>
         <div class="step-label">DESIGN</div>
         <h4>Growth Blueprint</h4>
-        <p class="text-white opacity-70">A custom 90-day roadmap built around your unit economics: CAC, LTV, and MER targets—and the channels most likely to hit them.</p>
+        <p>A custom 90-day roadmap built around your unit economics: CAC, LTV, and MER targets—and the channels most likely to hit them.</p>
       </div>
       <div class="step">
-        <div class="step-num text-white opacity-50" style="position:relative;top:0;">03</div>
+        <div class="step-num" style="position:relative;top:0;">03</div>
         <div class="step-label">DEPLOY</div>
         <h4>Full Execution</h4>
-        <p class="text-white opacity-70">Campaigns, content, and conversion work go live—all integrated, all tracked, and all accountable to the same revenue goal.</p>
+        <p>Campaigns, content, and conversion work go live—all integrated, all tracked, and all accountable to the same revenue goal.</p>
       </div>
       <div class="step">
-        <div class="step-num text-white opacity-50" style="position:relative;top:0;">04</div>
+        <div class="step-num" style="position:relative;top:0;">04</div>
         <div class="step-label">SCALE</div>
         <h4>Compound &amp; Win</h4>
-        <p class="text-white opacity-70">Weekly data loops drive continuous optimization. What works gets scaled. What doesn't gets cut. Growth compounds every month.</p>
+        <p>Weekly data loops drive continuous optimization. What works gets scaled. What doesn't gets cut. Growth compounds every month.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA FORM -->
-<section class="final-cta" id="contact">
-  <div class="container grid-2 gap-5 align-center">
-    <div class="cta-text">
-      <div class="tag">Direct Consultation</div>
-      <h2 style="font-size: 3.5rem;">Stop Guessing.<br>Start Scaling.</h2>
+<section class="final-cta" id="contact" style="padding: 6rem 0; background: var(--gray-bg);">
+  <div class="container" style="max-width: 1100px;">
+    
+    <div class="cta-header text-center" style="margin-bottom: 4rem;">
+      <div class="tag" style="margin: 0 auto 1.5rem; background: var(--orange); color: #fff; border-color: var(--orange);">Direct Consultation</div>
+      <h2 style="font-size: clamp(2.5rem, 5vw, 4.5rem); font-family: var(--font-display); color: var(--text-dark); margin-bottom: 0.8rem; line-height: 1.1;">Stop Guessing. Start Scaling.</h2>
     </div>
-    <div class="cta-form-box">
-      <form class="utm-form" method="POST" action="success.php">
+
+    <div class="cta-form-box" style="padding: 4rem; box-shadow: 0 40px 80px rgba(15,15,15,0.06); max-width: 100%;">
+      <form class="utm-form form-horizontal-grid" method="POST" action="success.php">
         <input type="hidden" name="form_type" value="contact">
         <input type="hidden" name="utm_url" class="utm-url">
         <input type="hidden" name="utm_source" class="utm-source">
@@ -611,18 +707,27 @@
         <input type="hidden" name="utm_campaign" class="utm-campaign">
         <input type="hidden" name="utm_content" class="utm-content">
         <input type="hidden" name="pricing_plan" class="pricing-plan">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Work Email" required>
-        <input type="tel" name="phone" placeholder="Phone Number">
-        <select name="challenge" required>
-          <option value="" disabled selected>Select Primary Challenge</option>
-          <option>High Customer Acquisition Cost (CAC)</option>
-          <option>Stagnant Organic Traffic</option>
-          <option>Low Conversion Rates</option>
-          <option>Scattered Attribution</option>
-        </select>
-        <textarea name="goal" placeholder="Tell me about your 90-day revenue goal" rows="3"></textarea>
-        <button type="submit" class="btn btn-primary btn-block">Get My Free Growth Roadmap</button>
+        
+        <div class="form-row-3">
+          <input type="text" name="name" placeholder="Full Name" required style="margin-bottom: 0;">
+          <input type="email" name="email" placeholder="Work Email" required style="margin-bottom: 0;">
+          <input type="tel" name="phone" placeholder="Phone Number" style="margin-bottom: 0;">
+        </div>
+        
+        <div class="form-row-2">
+          <select name="challenge" required style="margin-bottom: 0;">
+            <option value="" disabled selected>Select Primary Challenge</option>
+            <option>High Customer Acquisition Cost (CAC)</option>
+            <option>Stagnant Organic Traffic</option>
+            <option>Low Conversion Rates</option>
+            <option>Scattered Attribution</option>
+          </select>
+          <input type="text" name="goal" placeholder="Tell me about your 90-day revenue goal" style="margin-bottom: 0;">
+        </div>
+        
+        <div class="text-center" style="margin-top: 1.5rem;">
+          <button type="submit" class="btn btn-primary" style="padding: 1.25rem 4rem; font-size: 1.1rem; width: auto;">Get My Free Growth Roadmap</button>
+        </div>
       </form>
     </div>
   </div>
@@ -637,8 +742,15 @@
       <p class="opacity-70">Deep-dive growth strategies and market attribution insights delivered to your inbox every fortnight. No fluff. Just data.</p>
     </div>
     <div class="nl-form">
-      <form class="d-flex" method="POST" action="newsletter.php">
+      <form class="d-flex" method="POST" action="newsletter.php" id="nl-form-main">
         <input type="email" name="email" placeholder="Enter your work email" required class="nl-input">
+        <input type="hidden" name="source"       value="homepage-newsletter">
+        <input type="hidden" name="page_url"     class="nl-page_url"     value="">
+        <input type="hidden" name="utm_source"   class="nl-utm_source"   value="">
+        <input type="hidden" name="utm_medium"   class="nl-utm_medium"   value="">
+        <input type="hidden" name="utm_campaign" class="nl-utm_campaign" value="">
+        <input type="hidden" name="utm_content"  class="nl-utm_content"  value="">
+        <input type="hidden" name="utm_term"     class="nl-utm_term"     value="">
         <button type="submit" class="btn btn-orange">Subscribe Free</button>
       </form>
     </div>
@@ -652,7 +764,7 @@
 (function () {
   // ── UTM capture ──────────────────────────────────────────────────────────
   const params  = new URLSearchParams(window.location.search);
-  const utmKeys = ['source', 'medium', 'campaign', 'content'];
+  const utmKeys = ['source', 'medium', 'campaign', 'content', 'term'];
 
   // Persist UTMs in sessionStorage so they survive anchor-scroll navigation
   utmKeys.forEach(k => {
@@ -671,6 +783,13 @@
       form.querySelector('.utm-campaign').value = sessionStorage.getItem('utm_campaign') || '';
       form.querySelector('.utm-content').value  = sessionStorage.getItem('utm_content')  || '';
     });
+    // Newsletter forms
+    document.querySelectorAll('[class*="nl-page_url"]').forEach(el  => el.value = sessionStorage.getItem('utm_url')      || window.location.href);
+    document.querySelectorAll('[class*="nl-utm_source"]').forEach(el   => el.value = sessionStorage.getItem('utm_source')   || '');
+    document.querySelectorAll('[class*="nl-utm_medium"]').forEach(el   => el.value = sessionStorage.getItem('utm_medium')   || '');
+    document.querySelectorAll('[class*="nl-utm_campaign"]').forEach(el => el.value = sessionStorage.getItem('utm_campaign') || '');
+    document.querySelectorAll('[class*="nl-utm_content"]').forEach(el  => el.value = sessionStorage.getItem('utm_content')  || '');
+    document.querySelectorAll('[class*="nl-utm_term"]').forEach(el     => el.value = params.get('utm_term') || sessionStorage.getItem('utm_term') || '');
   }
   fillForms();
 

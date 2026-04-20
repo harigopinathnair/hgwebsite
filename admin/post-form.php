@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once 'auth.php';
 
 // ── Auto-migrate: add SEO + featured_image columns if missing ──────────────
@@ -167,8 +167,86 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= $page_title ?> | Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<style>
+/* ── Quill editor overrides ───────────────────────────────── */
+.ql-toolbar.ql-snow {
+  border: 1px solid var(--gray-border);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  background: #f8fafc;
+  padding: 8px 10px;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.ql-container.ql-snow {
+  border: 1px solid var(--gray-border);
+  border-radius: 0 0 6px 6px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+}
+.ql-editor {
+  min-height: 420px;
+  line-height: 1.75;
+  color: #2d3e50;
+  padding: 1.1rem 1.2rem;
+}
+.ql-editor p { margin-bottom: 0.75em; }
+.ql-editor h1, .ql-editor h2, .ql-editor h3 {
+  font-family: 'Lexend Deca', sans-serif;
+  color: #2d3e50;
+  margin: 1.2em 0 0.5em;
+}
+.ql-editor blockquote {
+  border-left: 3px solid #FF7A59;
+  padding-left: 1rem;
+  color: #64748b;
+  font-style: italic;
+  margin: 1em 0;
+}
+.ql-editor pre.ql-syntax {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.87rem;
+}
+.ql-snow .ql-picker.ql-header .ql-picker-label::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item::before { content: 'Paragraph'; }
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before { content: 'Heading 1'; }
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before { content: 'Heading 2'; }
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before { content: 'Heading 3'; }
+.ql-snow .ql-stroke { stroke: #2d3e50; }
+.ql-snow .ql-fill  { fill: #2d3e50; }
+.ql-snow .ql-picker { color: #2d3e50; }
+.ql-snow .ql-active .ql-stroke,
+.ql-snow button:hover .ql-stroke,
+.ql-snow .ql-picker-label:hover .ql-stroke { stroke: #FF7A59 !important; }
+.ql-snow .ql-active .ql-fill,
+.ql-snow button:hover .ql-fill { fill: #FF7A59 !important; }
+.ql-snow button:hover, .ql-snow .ql-active { color: #FF7A59 !important; }
+.ql-editor.ql-blank::before { color: #94a3b8; font-style: normal; }
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 1rem 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.ql-editor img:hover { outline: 2px solid #FF7A59; }
+
+/* Upload progress indicator in toolbar */
+.ql-toolbar .ql-image svg { pointer-events: none; }
+</style>
 </head>
 <body>
 
@@ -182,6 +260,7 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
       <a href="post-form.php" class="nav-item <?= $mode === 'new' ? 'active' : '' ?>">New Post</a>
       <a href="crm.php" class="nav-item">CRM</a>
       <a href="subscribers.php" class="nav-item">Subscribers</a>
+      <a href="settings.php" class="nav-item">Settings</a>
       <a href="../index.php" class="nav-item" target="_blank">View Site</a>
     </nav>
     <div class="sidebar-footer">
@@ -196,7 +275,7 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
       <div>
         <h1><?= $page_title ?></h1>
         <?php if ($mode === 'edit'): ?>
-          <p class="page-sub"><a href="../single-post.php?slug=<?= urlencode($post['slug']) ?>" target="_blank">View live post &rarr;</a></p>
+          <p class="page-sub"><a href="<?= BASE_PATH ?>/blog/<?= urlencode($post['slug']) ?>" target="_blank">View live post &rarr;</a></p>
         <?php endif; ?>
       </div>
       <a href="posts.php" class="btn-secondary">&larr; All Posts</a>
@@ -236,8 +315,9 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
           </div>
 
           <div class="field">
-            <label for="content">Content <span class="req">*</span> <span class="field-hint">(HTML supported)</span></label>
-            <textarea id="content" name="content" rows="22" class="content-editor" placeholder="<p>Start writing your post...</p>"><?= htmlspecialchars($post['content']) ?></textarea>
+            <label>Content <span class="req">*</span></label>
+            <div id="quill-editor"></div>
+            <textarea id="content" name="content" style="display:none;"><?= htmlspecialchars($post['content']) ?></textarea>
           </div>
 
           <!-- SEO box -->
@@ -379,7 +459,80 @@ $featured_src = $post['featured_image'] ? ('../' . $post['featured_image']) : ($
 
 </div>
 
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 <script>
+// ── Quill rich text editor ─────────────────────────────────────────────────
+const quill = new Quill('#quill-editor', {
+  theme: 'snow',
+  placeholder: 'Start writing your post…',
+  modules: {
+    toolbar: {
+      container: [
+        [{ header: [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['link', 'image'],
+        [{ indent: '-1' }, { indent: '+1' }],
+        [{ align: [] }],
+        ['clean']
+      ],
+      handlers: {
+        image: imageUploadHandler
+      }
+    }
+  }
+});
+
+// ── Image upload handler ───────────────────────────────────────────────────
+function imageUploadHandler() {
+  const input = document.createElement('input');
+  input.type   = 'file';
+  input.accept = 'image/jpeg,image/png,image/webp,image/gif';
+  input.click();
+
+  input.onchange = () => {
+    const file = input.files[0];
+    if (!file) return;
+
+    // Show inline loading indicator at cursor
+    const range = quill.getSelection(true);
+    quill.insertText(range.index, '⏳ Uploading image…', 'italic', true);
+    quill.setSelection(range.index + 18);
+
+    const fd = new FormData();
+    fd.append('image', file);
+
+    fetch('upload-image.php', { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        // Remove the loading text
+        quill.deleteText(range.index, 18);
+        if (data.url) {
+          quill.insertEmbed(range.index, 'image', data.url, 'user');
+          quill.setSelection(range.index + 1);
+        } else {
+          alert('Upload failed: ' + (data.error || 'Unknown error'));
+        }
+      })
+      .catch(() => {
+        quill.deleteText(range.index, 18);
+        alert('Upload failed. Check your connection.');
+      });
+  };
+}
+
+// Pre-populate with saved content
+const savedContent = document.getElementById('content').value;
+if (savedContent.trim()) {
+  quill.clipboard.dangerouslyPasteHTML(savedContent);
+}
+
+// On form submit: copy Quill HTML into the hidden textarea
+document.querySelector('.post-form').addEventListener('submit', () => {
+  document.getElementById('content').value = quill.root.innerHTML;
+});
+
 // ── Slug auto-generate ─────────────────────────────────────────────────────
 const titleInput = document.getElementById('title');
 const slugInput  = document.getElementById('slug');

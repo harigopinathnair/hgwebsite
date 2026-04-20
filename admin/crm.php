@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once 'auth.php';
 
 // ── Auto-migrate leads table ───────────────────────────────────────────────
@@ -67,8 +67,10 @@ function source_badge(string $s): string {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRM | Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 /* ── Export button ──────────────────────────────────────────── */
 .export-wrap     { position: relative; }
@@ -218,6 +220,7 @@ function source_badge(string $s): string {
       <a href="post-form.php" class="nav-item">New Post</a>
       <a href="crm.php" class="nav-item active">CRM</a>
       <a href="subscribers.php" class="nav-item">Subscribers</a>
+      <a href="settings.php" class="nav-item">Settings</a>
       <a href="../index.php" class="nav-item" target="_blank">View Site</a>
     </nav>
     <div class="sidebar-footer">

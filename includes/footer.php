@@ -34,3 +34,5 @@
     </div>
   </div>
 </footer>
+
+<?php require_once __DIR__ . '/chat-widget.php'; ?>

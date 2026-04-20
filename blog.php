@@ -45,8 +45,13 @@ function fmt_date(string $date): string {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog | HariGopinath.com</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style-2040.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
 
@@ -62,7 +67,7 @@ function fmt_date(string $date): string {
 </section>
 
 <!-- POSTS -->
-<section style="padding: 4rem 0 8rem; background: var(--gray-bg);">
+<section style="padding: 2rem 0 8rem; background: var(--gray-bg);">
   <div class="container">
 
     <?php if (!empty($categories)): ?>
@@ -83,11 +88,12 @@ function fmt_date(string $date): string {
     <?php else: ?>
     <div class="blog-grid">
       <?php foreach ($posts as $post): ?>
-      <a href="single-post.php?slug=<?= urlencode($post['slug']) ?>" class="blog-card">
-        <div class="blog-image" style="background-image: url('<?= htmlspecialchars($post['image_url'] ?: '') ?>');"></div>
+      <a href="<?= BASE_PATH ?>/blog/<?= urlencode($post['slug']) ?>" class="blog-card">
+        <div class="blog-image" style="background-image: linear-gradient(rgba(31, 46, 80, 0.4), rgba(31, 46, 80, 0.8)), url('blog-bg.jpg'); display: flex; align-items: center; justify-content: center; padding: 1.5rem; text-align: center;">
+          <h3 style="color: #fff; font-size: 1.25rem; margin: 0; font-family: var(--font-display); line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-weight: 700;"><?= htmlspecialchars($post['title']) ?></h3>
+        </div>
         <div class="blog-content">
           <span class="blog-tag"><?= htmlspecialchars($post['category']) ?></span>
-          <h2 class="blog-title"><?= htmlspecialchars($post['title']) ?></h2>
           <p class="blog-excerpt"><?= htmlspecialchars($post['excerpt']) ?></p>
           <div class="blog-meta">
             <span><?= fmt_date($post['created_at']) ?></span>
@@ -120,12 +126,12 @@ function fmt_date(string $date): string {
 </section>
 
 <!-- NEWSLETTER -->
-<section class="newsletter-section section-navy" style="padding-top: 4rem; padding-bottom: 4rem;">
+<section class="newsletter-section section-gray" style="padding-top: 4rem; padding-bottom: 4rem;">
   <div class="container grid-2 align-center">
     <div class="nl-text">
       <div class="tag text-orange">Pulse Intelligence</div>
-      <h2 style="font-size: 2.5rem; color: #fff;">Join 1,000+ Growth Marketers.</h2>
-      <p class="opacity-70" style="color: #fff;">Deep-dive growth strategies and market attribution insights delivered to your inbox every fortnight. No fluff. Just data.</p>
+      <h2 style="font-size: 2.5rem;">Join 1,000+ Growth Marketers.</h2>
+      <p>Deep-dive growth strategies and market attribution insights delivered to your inbox every fortnight. No fluff. Just data.</p>
     </div>
     <div class="nl-form">
       <form class="d-flex">

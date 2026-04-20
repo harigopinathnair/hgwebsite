@@ -9,7 +9,24 @@
       "Read(//c/wamp64//**)",
       "Bash(/c/wamp64/bin/php/php8.2.29/php.exe /c/wamp64/www/worthycite/composer.phar require mailgun/mailgun-php symfony/http-client nyholm/psr7)",
       "Bash(/c/wamp64/bin/php/php8.2.29/php.exe /c/wamp64/www/worthycite/composer.phar config allow-plugins.php-http/discovery true)",
-      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe /c/wamp64/www/worthycite/composer.phar install --no-interaction)"
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe /c/wamp64/www/worthycite/composer.phar install --no-interaction)",
+      "Bash(curl -s \"http://localhost/harippc/publish-eeat.php\")",
+      "Bash(/c/wamp64/bin/php/php8.3.14/php.exe c:/wamp64/www/harippc/publish-zero-click.php)",
+      "Bash(/c/wamp64/bin/php/php8.2.26/php.exe -r ' *)",
+      "Read(//c/wamp64/**)",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe -r ' *)",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe C:/wamp64/www/harippc/_insert_post.php)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} | final_url: %{url_effective}\" \"http://localhost/harippc/blog/keyword-clustering-how-to-group-keywords-maximum-rankings\")",
+      "Bash(curl -s \"http://localhost/harippc/blog/keyword-clustering-how-to-group-keywords-maximum-rankings\")",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe C:/wamp64/www/harippc/_insert_post2.php)",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe C:/wamp64/www/harippc/_insert_post3.php)",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe C:/wamp64/www/harippc/_insert_post4.php)",
+      "Bash(php -r 'require_once '\\\\''db.php'\\\\''; $stmt = $pdo->query\\('\\\\''SELECT title, slug, category FROM posts ORDER BY id'\\\\''\\); foreach\\($stmt->fetchAll\\(\\) as $r\\) echo $r['\\\\''id'\\\\''] ?? '\\\\''?'\\\\''. '\\\\'' | '\\\\'' . $r['\\\\''category'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''slug'\\\\''] . PHP_EOL;')",
+      "Bash(php -r 'require_once '\\\\''c:/wamp64/www/harippc/db.php'\\\\''; $stmt = $pdo->query\\('\\\\''SELECT id, title, slug, category FROM posts ORDER BY id'\\\\''\\); foreach\\($stmt->fetchAll\\(\\) as $r\\) echo $r['\\\\''id'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''category'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''slug'\\\\''] . PHP_EOL;')",
+      "Bash(c:/wamp64/bin/php/php8.2.0/php.exe -r 'require_once '\\\\''c:/wamp64/www/harippc/db.php'\\\\''; $stmt = $pdo->query\\('\\\\''SELECT id, title, slug, category FROM posts ORDER BY id'\\\\''\\); foreach\\($stmt->fetchAll\\(\\) as $r\\) echo $r['\\\\''id'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''category'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''slug'\\\\''] . PHP_EOL;')",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe -r 'require_once '\\\\''c:/wamp64/www/harippc/db.php'\\\\''; $stmt = $pdo->query\\('\\\\''SELECT id, title, slug, category FROM posts ORDER BY id'\\\\''\\); foreach\\($stmt->fetchAll\\(\\) as $r\\) echo $r['\\\\''id'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''category'\\\\''] . '\\\\'' | '\\\\'' . $r['\\\\''slug'\\\\''] . PHP_EOL;')",
+      "Bash(/c/wamp64/bin/php/php8.2.29/php.exe c:/wamp64/www/harippc/publish-geo-intro.php)"
     ]
   }
 }

@@ -1,0 +1,7 @@
+Options -Indexes -MultiViews
+RewriteEngine On
+
+# Pretty blog permalinks: /blog/slug → single-post.php?slug=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([a-zA-Z0-9_-]+)/?$ single-post.php?slug=$1 [L,QSA]

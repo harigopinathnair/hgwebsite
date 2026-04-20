@@ -1,14 +1,32 @@
-<?php
+﻿<?php
 require_once 'auth.php';
 
 // Auto-create table if missing
 $pdo->exec("CREATE TABLE IF NOT EXISTS subscribers (
-    id         INT(11)      AUTO_INCREMENT PRIMARY KEY,
-    email      VARCHAR(255) NOT NULL UNIQUE,
-    status     VARCHAR(20)  NOT NULL DEFAULT 'active',
-    source     VARCHAR(100) NOT NULL DEFAULT 'website',
-    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+    id           INT(11)      AUTO_INCREMENT PRIMARY KEY,
+    email        VARCHAR(191) NOT NULL UNIQUE,
+    status       VARCHAR(20)  NOT NULL DEFAULT 'active',
+    source       VARCHAR(100) NOT NULL DEFAULT 'website',
+    page_url     VARCHAR(500) DEFAULT NULL,
+    utm_source   VARCHAR(100) DEFAULT NULL,
+    utm_medium   VARCHAR(100) DEFAULT NULL,
+    utm_campaign VARCHAR(100) DEFAULT NULL,
+    utm_content  VARCHAR(100) DEFAULT NULL,
+    utm_term     VARCHAR(100) DEFAULT NULL,
+    created_at   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+
+// Auto-migrate: add UTM columns if missing
+foreach ([
+    'page_url'     => 'VARCHAR(500) DEFAULT NULL',
+    'utm_source'   => 'VARCHAR(100) DEFAULT NULL',
+    'utm_medium'   => 'VARCHAR(100) DEFAULT NULL',
+    'utm_campaign' => 'VARCHAR(100) DEFAULT NULL',
+    'utm_content'  => 'VARCHAR(100) DEFAULT NULL',
+    'utm_term'     => 'VARCHAR(100) DEFAULT NULL',
+] as $col => $def) {
+    try { $pdo->exec("ALTER TABLE subscribers ADD COLUMN `$col` $def"); } catch (Exception $e) {}
+}
 
 // Handle CSV export
 if (isset($_GET['export'])) {
@@ -18,9 +36,14 @@ if (isset($_GET['export'])) {
     header('Pragma: no-cache');
     $out = fopen('php://output', 'w');
     fputs($out, "\xEF\xBB\xBF");
-    fputcsv($out, ['ID', 'Email', 'Status', 'Source', 'Date']);
+    fputcsv($out, ['ID', 'Email', 'Status', 'Source', 'Page URL', 'UTM Source', 'UTM Medium', 'UTM Campaign', 'UTM Content', 'UTM Term', 'Date']);
     foreach ($subs as $s) {
-        fputcsv($out, [$s['id'], $s['email'], $s['status'], $s['source'], date('d M Y H:i', strtotime($s['created_at']))]);
+        fputcsv($out, [
+            $s['id'], $s['email'], $s['status'], $s['source'],
+            $s['page_url'] ?? '', $s['utm_source'] ?? '', $s['utm_medium'] ?? '',
+            $s['utm_campaign'] ?? '', $s['utm_content'] ?? '', $s['utm_term'] ?? '',
+            date('d M Y H:i', strtotime($s['created_at'])),
+        ]);
     }
     fclose($out);
     exit;
@@ -64,8 +87,10 @@ if ($filter === 'active') {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Subscribers | Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 .sub-widgets { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem; }
 .sub-widget  { background:#fff; border:1px solid var(--gray-border); border-radius:10px; padding:1.25rem 1.4rem; border-top:3px solid var(--gray-border); }
@@ -107,6 +132,7 @@ if ($filter === 'active') {
       <a href="post-form.php" class="nav-item">New Post</a>
       <a href="crm.php" class="nav-item">CRM</a>
       <a href="subscribers.php" class="nav-item active">Subscribers</a>
+      <a href="settings.php" class="nav-item">Settings</a>
       <a href="../index.php" class="nav-item" target="_blank">View Site</a>
     </nav>
     <div class="sidebar-footer">
@@ -158,6 +184,8 @@ if ($filter === 'active') {
           <tr>
             <th>Email</th>
             <th>Source</th>
+            <th>UTM</th>
+            <th>Page URL</th>
             <th>Status</th>
             <th>Date</th>
             <th>Actions</th>
@@ -165,14 +193,35 @@ if ($filter === 'active') {
         </thead>
         <tbody>
           <?php if (empty($subs)): ?>
-          <tr><td colspan="5" class="empty-row">No subscribers yet.</td></tr>
+          <tr><td colspan="7" class="empty-row">No subscribers yet.</td></tr>
           <?php else: ?>
           <?php foreach ($subs as $s): ?>
+          <?php
+            $utm_parts = array_filter([
+              $s['utm_source']   ?? '' ? 'src: '  . $s['utm_source']   : '',
+              $s['utm_medium']   ?? '' ? 'med: '  . $s['utm_medium']   : '',
+              $s['utm_campaign'] ?? '' ? 'cmp: '  . $s['utm_campaign'] : '',
+              $s['utm_content']  ?? '' ? 'cnt: '  . $s['utm_content']  : '',
+              $s['utm_term']     ?? '' ? 'term: ' . $s['utm_term']     : '',
+            ]);
+          ?>
           <tr>
             <td>
               <div class="sub-email"><?= htmlspecialchars($s['email']) ?></div>
             </td>
-            <td><span style="font-size:0.82rem;color:var(--text-light);"><?= htmlspecialchars($s['source']) ?></span></td>
+            <td><span style="font-size:0.82rem;color:var(--text-light);"><?= htmlspecialchars($s['source'] ?? '') ?></span></td>
+            <td style="font-size:0.78rem;color:var(--text-light);max-width:160px;">
+              <?= $utm_parts ? nl2br(htmlspecialchars(implode("\n", $utm_parts))) : '<span style="opacity:0.4;">—</span>' ?>
+            </td>
+            <td style="font-size:0.78rem;max-width:180px;word-break:break-all;">
+              <?php if (!empty($s['page_url'])): ?>
+                <a href="<?= htmlspecialchars($s['page_url']) ?>" target="_blank" title="<?= htmlspecialchars($s['page_url']) ?>" style="color:var(--navy);text-decoration:none;">
+                  <?= htmlspecialchars(parse_url($s['page_url'], PHP_URL_PATH) ?: $s['page_url']) ?>
+                </a>
+              <?php else: ?>
+                <span style="opacity:0.4;">—</span>
+              <?php endif; ?>
+            </td>
             <td>
               <?php if ($s['status'] === 'active'): ?>
                 <span class="status-active">● Active</span>

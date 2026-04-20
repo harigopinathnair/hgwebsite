@@ -1,5 +1,5 @@
-<?php
-// Only allow POST requests — reject direct URL access
+﻿<?php
+// Only allow POST requests, reject direct URL access
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
     exit;
@@ -92,7 +92,7 @@ try {
     send_lead_notification($lead_data);
 
 } catch (Exception $e) {
-    // Silently fail — don't break the success page for the user
+    // Silently fail, don't break the success page for the user
     error_log('Lead save error: ' . $e->getMessage());
 }
 ?>
@@ -102,8 +102,13 @@ try {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Message Received | HariGopinath.com</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style-2040.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <style>
   .success-section {
     min-height: calc(100vh - 73px);
@@ -114,13 +119,13 @@ try {
     padding: 4rem 0;
   }
   .success-card {
-    background: #fff;
+    background: var(--card);
     border-radius: 16px;
     padding: 4rem 3.5rem;
     max-width: 560px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(45,62,80,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     border: 1px solid var(--gray-border);
   }
   .success-icon {
@@ -133,14 +138,14 @@ try {
     justify-content: center;
     margin: 0 auto 2rem;
   }
-  .success-card h1 {
-    font-size: 2rem;
+  .success-card h2 {
+    font-size: 2.2rem;
     margin-bottom: 1rem;
     color: var(--text-dark);
   }
   .success-card p {
     font-size: 1.05rem;
-    color: var(--text-light);
+    color: var(--theme-text-m);
     line-height: 1.7;
     margin-bottom: 2rem;
   }
@@ -165,7 +170,7 @@ try {
   }
   .success-card .next-steps li {
     font-size: 0.95rem;
-    color: var(--text-dark);
+    color: var(--theme-text-h);
     font-weight: 500;
     padding: 0.5rem 0;
     border-bottom: 1px solid var(--gray-border);
@@ -202,13 +207,13 @@ try {
       </svg>
     </div>
 
-    <h1>
+    <h2>
       <?php if ($form_type === 'audit'): ?>
         Audit Request Received!
       <?php else: ?>
         Message Received!
       <?php endif; ?>
-    </h1>
+    </h2>
 
     <p>
       Thanks, <strong><?= $name ?></strong>. I've got your details and will personally review your request. Expect to hear from me within <strong>24 hours</strong>.
