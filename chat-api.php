@@ -4,6 +4,7 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/includes/captcha.php';
 
 // Auto-create tables
 $pdo->exec("CREATE TABLE IF NOT EXISTS chat_sessions (
@@ -66,6 +67,10 @@ switch ($action) {
 
     // ── Create a new chat session ────────────────────────────────
     case 'start':
+        if (!captcha_check()) {
+            out(['ok' => false, 'error' => 'Incorrect answer to the anti-spam question. Please try again.']);
+        }
+
         $name     = trim($_POST['name']     ?? '');
         $email    = trim($_POST['email']    ?? '');
         $phone    = trim($_POST['phone']    ?? '');

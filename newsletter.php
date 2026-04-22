@@ -4,6 +4,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_once __DIR__ . '/includes/captcha.php';
+if (!captcha_check()) {
+    header('Location: index.php?error=captcha#newsletter');
+    exit;
+}
+
 $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

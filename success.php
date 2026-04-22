@@ -5,6 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_once __DIR__ . '/includes/captcha.php';
+if (!captcha_check()) {
+    header('Location: index.php?error=captcha#contact');
+    exit;
+}
+
 $form_type = $_POST['form_type'] ?? 'contact';
 $name      = htmlspecialchars(trim($_POST['name']  ?? 'there'));
 

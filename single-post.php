@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'includes/captcha.php';
 
 // ── Author settings ────────────────────────────────────────────────────────
 function sp_get_setting(PDO $pdo, string $key, string $default = ''): string {
@@ -253,16 +254,19 @@ $_base    = $_proto . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/';
       <p>Deep-dive growth strategies delivered to your inbox every fortnight. No fluff. Just data.</p>
     </div>
     <div class="nl-form">
-      <form class="d-flex nl-form-post" method="POST" action="newsletter.php">
-        <input type="email" name="email" placeholder="Enter your work email" required class="nl-input">
-        <input type="hidden" name="source"       value="post-footer">
-        <input type="hidden" name="page_url"     class="nl-page_url"     value="">
-        <input type="hidden" name="utm_source"   class="nl-utm_source"   value="">
-        <input type="hidden" name="utm_medium"   class="nl-utm_medium"   value="">
-        <input type="hidden" name="utm_campaign" class="nl-utm_campaign" value="">
-        <input type="hidden" name="utm_content"  class="nl-utm_content"  value="">
-        <input type="hidden" name="utm_term"     class="nl-utm_term"     value="">
-        <button type="submit" class="btn btn-orange">Subscribe Free</button>
+      <form class="nl-form-post" method="POST" action="newsletter.php">
+        <div class="d-flex" style="margin-bottom:0.6rem;">
+          <input type="email" name="email" placeholder="Enter your work email" required class="nl-input" style="margin-bottom:0;">
+          <input type="hidden" name="source"       value="post-footer">
+          <input type="hidden" name="page_url"     class="nl-page_url"     value="">
+          <input type="hidden" name="utm_source"   class="nl-utm_source"   value="">
+          <input type="hidden" name="utm_medium"   class="nl-utm_medium"   value="">
+          <input type="hidden" name="utm_campaign" class="nl-utm_campaign" value="">
+          <input type="hidden" name="utm_content"  class="nl-utm_content"  value="">
+          <input type="hidden" name="utm_term"     class="nl-utm_term"     value="">
+          <button type="submit" class="btn btn-orange">Subscribe Free</button>
+        </div>
+        <?= captcha_html(true) ?>
       </form>
     </div>
   </div>

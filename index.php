@@ -1,4 +1,4 @@
-﻿<?php require_once 'db.php'; ?>
+﻿<?php require_once 'db.php'; require_once 'includes/captcha.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,12 @@
 <body>
 
 <?php $nav_prefix = ''; require 'includes/nav.php'; ?>
+
+<?php if (!empty($_GET['error']) && $_GET['error'] === 'captcha'): ?>
+<div style="background:#fee2e2;border-bottom:1px solid #fca5a5;padding:0.75rem 1rem;text-align:center;font-size:0.88rem;color:#991b1b;font-family:var(--font-body);">
+  Incorrect anti-spam answer. Please try again — scroll down to the form.
+</div>
+<?php endif; ?>
 
 <!-- CERTIFICATIONS STRIP -->
 <div class="certs-strip">
@@ -83,6 +89,7 @@
           </select>
         </div>
         <input type="text" name="goal" placeholder="Primary Goal">
+        <?= captcha_html() ?>
         <button type="submit" class="btn btn-primary btn-block">Send My Free Audit &rarr;</button>
         <div class="form-secure">🔒 100% confidential. No spam, ever.</div>
       </form>
@@ -725,7 +732,8 @@
           <input type="text" name="goal" placeholder="Tell me about your 90-day revenue goal" style="margin-bottom: 0;">
         </div>
         
-        <div class="text-center" style="margin-top: 1.5rem;">
+        <?= captcha_html() ?>
+        <div class="text-center" style="margin-top: 0.5rem;">
           <button type="submit" class="btn btn-primary" style="padding: 1.25rem 4rem; font-size: 1.1rem; width: auto;">Get My Free Growth Roadmap</button>
         </div>
       </form>
@@ -742,16 +750,19 @@
       <p class="opacity-70">Deep-dive growth strategies and market attribution insights delivered to your inbox every fortnight. No fluff. Just data.</p>
     </div>
     <div class="nl-form">
-      <form class="d-flex" method="POST" action="newsletter.php" id="nl-form-main">
-        <input type="email" name="email" placeholder="Enter your work email" required class="nl-input">
-        <input type="hidden" name="source"       value="homepage-newsletter">
-        <input type="hidden" name="page_url"     class="nl-page_url"     value="">
-        <input type="hidden" name="utm_source"   class="nl-utm_source"   value="">
-        <input type="hidden" name="utm_medium"   class="nl-utm_medium"   value="">
-        <input type="hidden" name="utm_campaign" class="nl-utm_campaign" value="">
-        <input type="hidden" name="utm_content"  class="nl-utm_content"  value="">
-        <input type="hidden" name="utm_term"     class="nl-utm_term"     value="">
-        <button type="submit" class="btn btn-orange">Subscribe Free</button>
+      <form method="POST" action="newsletter.php" id="nl-form-main">
+        <div class="d-flex" style="margin-bottom:0.6rem;">
+          <input type="email" name="email" placeholder="Enter your work email" required class="nl-input" style="margin-bottom:0;">
+          <input type="hidden" name="source"       value="homepage-newsletter">
+          <input type="hidden" name="page_url"     class="nl-page_url"     value="">
+          <input type="hidden" name="utm_source"   class="nl-utm_source"   value="">
+          <input type="hidden" name="utm_medium"   class="nl-utm_medium"   value="">
+          <input type="hidden" name="utm_campaign" class="nl-utm_campaign" value="">
+          <input type="hidden" name="utm_content"  class="nl-utm_content"  value="">
+          <input type="hidden" name="utm_term"     class="nl-utm_term"     value="">
+          <button type="submit" class="btn btn-orange">Subscribe Free</button>
+        </div>
+        <?= captcha_html(true) ?>
       </form>
     </div>
   </div>
