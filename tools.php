@@ -1,4 +1,4 @@
-﻿<?php $nav_prefix = 'index.php'; ?>
+<?php $nav_prefix = 'index.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,6 +128,7 @@
   .tools-grid { grid-template-columns: 1fr; }
 }
 </style>
+<?= $custom_code_head ?? '' ?>
 </head>
 <body>
 

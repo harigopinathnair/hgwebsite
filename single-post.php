@@ -53,6 +53,7 @@ if (!$post) {
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<?= $custom_code_head ?? '' ?>
 </head>
 <body>
 <?php require 'includes/nav.php'; ?>
@@ -112,6 +113,7 @@ $_base    = $_proto . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/';
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<?= $custom_code_head ?? '' ?>
 </head>
 <body>
 

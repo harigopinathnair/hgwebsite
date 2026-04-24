@@ -36,3 +36,4 @@
 </footer>
 
 <?php require_once __DIR__ . '/chat-widget.php'; ?>
+<?= $custom_code_footer ?? '' ?>

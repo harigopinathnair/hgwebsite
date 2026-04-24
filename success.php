@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 ini_set('display_errors', '0');
 ob_start();
 register_shutdown_function(function() {
@@ -231,6 +231,7 @@ ob_end_clean();
   }
   .success-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 </style>
+<?= $custom_code_head ?? '' ?>
 </head>
 <body>
 

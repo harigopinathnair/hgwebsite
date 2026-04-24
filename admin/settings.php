@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once 'auth.php';
 
 // ── Auto-create settings table ─────────────────────────────────────────────
@@ -60,6 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    $custom_code_head   = $_POST['custom_code_head'] ?? '';
+    $custom_code_body   = $_POST['custom_code_body'] ?? '';
+    $custom_code_footer = $_POST['custom_code_footer'] ?? '';
+
     if (empty($errors)) {
         save_setting($pdo, 'author_name',     $author_name);
         save_setting($pdo, 'author_title',    $author_title);
@@ -68,6 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         save_setting($pdo, 'author_email',    $author_email);
         save_setting($pdo, 'author_linkedin', $author_linkedin);
         save_setting($pdo, 'author_telegram', $author_telegram);
+        
+        save_setting($pdo, 'custom_code_head',   $custom_code_head);
+        save_setting($pdo, 'custom_code_body',   $custom_code_body);
+        save_setting($pdo, 'custom_code_footer', $custom_code_footer);
+        
         $flash = 'Settings saved.';
     }
 }
@@ -80,6 +89,10 @@ $author_photo    = get_setting($pdo, 'author_photo',    '');
 $author_email    = get_setting($pdo, 'author_email',    'contact@harigopinath.com');
 $author_linkedin = get_setting($pdo, 'author_linkedin', '');
 $author_telegram = get_setting($pdo, 'author_telegram', '');
+
+$custom_code_head   = get_setting($pdo, 'custom_code_head', '');
+$custom_code_body   = get_setting($pdo, 'custom_code_body', '');
+$custom_code_footer = get_setting($pdo, 'custom_code_footer', '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -189,6 +202,25 @@ $author_telegram = get_setting($pdo, 'author_telegram', '');
             <div class="field">
               <label for="author_telegram">Telegram Link <span class="field-hint">(t.me/username or deep link)</span></label>
               <input type="url" id="author_telegram" name="author_telegram" value="<?= htmlspecialchars($author_telegram) ?>" placeholder="https://t.me/yourusername">
+            </div>
+
+            <div style="border-top:1px solid var(--gray-border);margin:2.5rem 0 1.2rem;"></div>
+            <h4 style="font-size:0.9rem;font-weight:700;color:var(--text-dark);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.5px;">Custom Code Injection</h4>
+            <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem;">Add external scripts, analytics tracking, or custom styles here.</p>
+
+            <div class="field">
+              <label for="custom_code_head">Head Code <span class="field-hint">(Inside &lt;head&gt;)</span></label>
+              <textarea id="custom_code_head" name="custom_code_head" rows="4" placeholder="<script>...</script> หรือ <link rel='stylesheet' ...>" style="font-family: monospace; font-size: 0.85rem; line-height: 1.5;"><?= htmlspecialchars($custom_code_head) ?></textarea>
+            </div>
+
+            <div class="field">
+              <label for="custom_code_body">Body Top Code <span class="field-hint">(Right after &lt;body&gt;)</span></label>
+              <textarea id="custom_code_body" name="custom_code_body" rows="4" placeholder="<!-- Google Tag Manager (noscript) -->" style="font-family: monospace; font-size: 0.85rem; line-height: 1.5;"><?= htmlspecialchars($custom_code_body) ?></textarea>
+            </div>
+
+            <div class="field">
+              <label for="custom_code_footer">Footer Code <span class="field-hint">(Right before &lt;/body&gt;)</span></label>
+              <textarea id="custom_code_footer" name="custom_code_footer" rows="4" placeholder="<script>...</script>" style="font-family: monospace; font-size: 0.85rem; line-height: 1.5;"><?= htmlspecialchars($custom_code_footer) ?></textarea>
             </div>
 
             <button type="submit" class="btn-submit" style="max-width:200px;">Save Settings</button>

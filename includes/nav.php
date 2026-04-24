@@ -1,8 +1,9 @@
-﻿<?php
+<?php
 // $nav_prefix, set to '' for homepage, 'index.php' for sub-pages (blog, single-post, etc.)
 // defaults to 'index.php' so it works safely on all pages
 $nav_prefix ??= 'index.php';
 ?>
+<?= $custom_code_body ?? '' ?>
 <!-- NAV -->
 <nav class="main-nav">
   <div class="container nav-content">

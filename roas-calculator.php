@@ -332,6 +332,7 @@
   .channel-table tbody td:nth-child(2) { display: none; }
 }
 </style>
+<?= $custom_code_head ?? '' ?>
 </head>
 <body>
 
