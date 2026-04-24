@@ -1,4 +1,4 @@
-<?php $nav_prefix = 'index.php'; ?>
+<?php require_once 'db.php'; require_once 'includes/tracking.php'; $nav_prefix = 'index.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

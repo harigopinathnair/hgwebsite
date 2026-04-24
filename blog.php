@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'includes/tracking.php';
 
 // Pagination
 $per_page    = 6;

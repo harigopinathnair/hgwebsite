@@ -1,4 +1,5 @@
 <?php
+require_once 'db.php'; require_once 'includes/tracking.php';
 ini_set('display_errors', '0');
 ob_start();
 register_shutdown_function(function() {

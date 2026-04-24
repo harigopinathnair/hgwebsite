@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'includes/tracking.php';
 require_once 'includes/captcha.php';
 
 // ── Author settings ────────────────────────────────────────────────────────

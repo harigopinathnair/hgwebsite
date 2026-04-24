@@ -1,4 +1,4 @@
-<?php require_once 'db.php'; require_once 'includes/captcha.php'; ?>
+<?php require_once 'db.php'; require_once 'includes/tracking.php'; require_once 'includes/captcha.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

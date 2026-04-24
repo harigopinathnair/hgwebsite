@@ -7,6 +7,7 @@ if (!empty($_SESSION['admin_logged_in'])) {
 }
 
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../includes/tracking.php';
 
 $error = '';
 

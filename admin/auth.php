@@ -11,3 +11,4 @@ if (empty($_SESSION['admin_logged_in'])) {
 
 // DB connection (one level up from admin/)
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../includes/tracking.php';
