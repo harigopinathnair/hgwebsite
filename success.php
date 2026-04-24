@@ -233,6 +233,10 @@ ob_end_clean();
   .success-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 </style>
 <?= $custom_code_head ?? '' ?>
+<!-- Event snippet for Sale conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-977016188/MtrtCNaH_GwQ_Krw0QM'});
+</script>
 </head>
 <body>
 
