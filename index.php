@@ -1,4 +1,4 @@
-﻿<?php require_once 'db.php'; require_once 'includes/captcha.php'; ?>
+<?php require_once 'db.php'; require_once 'includes/captcha.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -870,7 +870,11 @@
         }
       } catch (e) {
         console.error('[Form] Fetch failed:', e);
-        showMsg(msgEl, 'error', 'Network error. Please check your connection and try again.');
+        // Fallback to native submission if AJAX fails (e.g. adblocker blocking utm_* payload, or file:// protocol)
+        msgEl.style.display = 'none';
+        btn.innerHTML = 'Sending…';
+        formEl.submit();
+        return;
       }
 
       btn.disabled = false;
