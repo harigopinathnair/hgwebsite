@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="footer-bottom mt-5 text-center opacity-50">
-      &copy; <?= date('Y') ?> HariGopinath.com &mdash; Revenue &gt; Reports.
+      &copy; <?= date('Y') ?> HariGopinath.com &mdash; Rankings + Results = Revenue.
     </div>
   </div>
 </footer>

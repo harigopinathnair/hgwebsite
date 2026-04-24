@@ -46,7 +46,7 @@ function send_lead_notification(array $lead): void {
     </div>
   </div>
   <div style="background:#f6f9fc;padding:16px 32px;font-size:0.78rem;color:#7c98b6;border-top:1px solid #cbd6e2;">
-    HariGopinath.com &mdash; Revenue &gt; Reports.
+    HariGopinath.com &mdash; Rankings + Results = Revenue.
   </div>
 </div>
 </body>
