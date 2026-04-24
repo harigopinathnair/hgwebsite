@@ -294,25 +294,11 @@ $_base    = $_proto . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/';
 
 <script>
 (function () {
-  const REFRESH = 'captcha-refresh.php';
-
   function showMsg(el, type, html) {
     el.className = 'form-inline-msg is-' + type;
     el.innerHTML = html;
     el.style.display = 'block';
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  async function refreshCaptcha(form) {
-    try {
-      const data = await (await fetch(REFRESH)).json();
-      const strong = form.querySelector('.captcha-label strong');
-      const token  = form.querySelector('input[name="captcha_token"]');
-      const input  = form.querySelector('.captcha-input');
-      if (strong) strong.textContent = data.question;
-      if (token)  token.value = data.token;
-      if (input)  { input.value = ''; input.focus(); }
-    } catch {}
   }
 
   const form = document.getElementById('form-nl-post');
@@ -336,10 +322,8 @@ $_base    = $_proto . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/';
         if (data.ok) {
           showMsg(msg, 'success', "You're in! Expect sharp growth insights every fortnight.");
           form.reset();
-          refreshCaptcha(form);
         } else {
           showMsg(msg, 'error', data.error || 'Something went wrong. Please try again.');
-          if ((data.error || '').toLowerCase().includes('anti-spam')) refreshCaptcha(form);
         }
       } catch {
         showMsg(msg, 'error', 'Network error. Please try again.');

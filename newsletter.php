@@ -81,5 +81,5 @@ try {
 if ($is_ajax) nl_json(true);
 // Redirect back with success flag (non-AJAX fallback)
 $redirect = $page_url ?: 'index.php';
-header('Location: ' . $redirect . (str_contains($redirect, '?') ? '&' : '?') . 'subscribed=1#newsletter');
+header('Location: ' . $redirect . (strpos($redirect, '?') !== false ? '&' : '?') . 'subscribed=1#newsletter');
 exit;

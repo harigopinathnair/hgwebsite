@@ -55,7 +55,7 @@ function telegram_notify($message) {
     curl_close($ch);
 }
 
-function get_session(PDO $pdo, string $token): array|false {
+function get_session(PDO $pdo, string $token) {
     $s = $pdo->prepare("SELECT * FROM chat_sessions WHERE token = ? LIMIT 1");
     $s->execute([trim($token)]);
     return $s->fetch(PDO::FETCH_ASSOC);

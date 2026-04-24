@@ -824,25 +824,11 @@
 <script>
 /* ── Inline AJAX form handler ──────────────────────────────────────────── */
 (function () {
-  const REFRESH = 'captcha-refresh.php';
-
   function showMsg(msgEl, type, html) {
     msgEl.className = 'form-inline-msg is-' + type;
     msgEl.innerHTML = html;
     msgEl.style.display = 'block';
     msgEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  async function refreshCaptcha(form) {
-    try {
-      const data = await (await fetch(REFRESH)).json();
-      const strong = form.querySelector('.captcha-label strong');
-      const token  = form.querySelector('input[name="captcha_token"]');
-      const input  = form.querySelector('.captcha-input');
-      if (strong) strong.textContent = data.question;
-      if (token)  token.value = data.token;
-      if (input)  { input.value = ''; input.focus(); }
-    } catch {}
   }
 
   function wireForm(formEl, msgEl, opts) {
@@ -869,13 +855,9 @@
           } else {
             showMsg(msgEl, 'success', opts.successMsg || 'Done!');
             formEl.reset();
-            refreshCaptcha(formEl);
           }
         } else {
           showMsg(msgEl, 'error', data.error || 'Something went wrong. Please try again.');
-          if ((data.error || '').toLowerCase().includes('anti-spam')) {
-            refreshCaptcha(formEl);
-          }
         }
       } catch {
         showMsg(msgEl, 'error', 'Network error. Please check your connection and try again.');
@@ -916,7 +898,6 @@
       onSuccess(form, msg) {
         showMsg(msg, 'success', "You're in! Expect sharp growth insights every fortnight.");
         form.reset();
-        refreshCaptcha(form);
       }
     });
   }

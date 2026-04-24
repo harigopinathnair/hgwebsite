@@ -132,13 +132,7 @@
       <label>Location (optional)</label>
       <input type="text" id="cwLocation" placeholder="City or Country">
 
-      <?php $__c = captcha_generate(); ?>
-      <div class="captcha-row captcha-compact" id="cwCaptchaRow">
-        <span class="captcha-label">What is <strong><?= htmlspecialchars($__c['question']) ?></strong>?</span>
-        <input type="number" id="cwCaptchaAnswer" class="captcha-input" placeholder="Answer" autocomplete="off" inputmode="numeric">
-        <input type="hidden" id="cwCaptchaToken" value="<?= htmlspecialchars($__c['token']) ?>">
-        <input type="text" id="cwHoneypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;">
-      </div>
+      <input type="text" id="cwHoneypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;">
 
       <button class="btn btn-primary" id="cwStartBtn">Start Chat</button>
     </div>
@@ -196,17 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
         startBtn.disabled = true;
         startBtn.textContent = 'Starting...';
 
-        const captchaAnswer = document.getElementById('cwCaptchaAnswer').value.trim();
-        const captchaToken  = document.getElementById('cwCaptchaToken').value;
-        const honeypot      = document.getElementById('cwHoneypot').value;
-
-        if (!captchaAnswer) {
-            alert('Please answer the anti-spam question.');
-            startBtn.disabled = false;
-            startBtn.textContent = 'Start Chat';
-            return;
-        }
-
         const fd = new FormData();
         fd.append('action', 'start');
         fd.append('name', name);
@@ -214,9 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fd.append('phone', document.getElementById('cwPhone').value);
         fd.append('location', document.getElementById('cwLocation').value);
         fd.append('page_url', window.location.href);
-        fd.append('captcha_answer', captchaAnswer);
-        fd.append('captcha_token', captchaToken);
-        fd.append('website', honeypot);
+        fd.append('website', document.getElementById('cwHoneypot').value);
 
         try {
             const r = await fetch('/chat-api.php', { method: 'POST', body: fd });

@@ -75,10 +75,10 @@ try {
     // Derive initial value from pricing plan
     $pricing_plan = trim($_POST['pricing_plan'] ?? '');
     $plan_value   = 0;
-    if (str_contains($pricing_plan, '150K'))     $plan_value = 150000;
-    elseif (str_contains($pricing_plan, '95K'))  $plan_value = 95000;
-    elseif (str_contains($pricing_plan, '85K'))  $plan_value = 85000;
-    elseif (str_contains($pricing_plan, '75K'))  $plan_value = 75000;
+    if (strpos($pricing_plan, '150K') !== false)     $plan_value = 150000;
+    elseif (strpos($pricing_plan, '95K') !== false)  $plan_value = 95000;
+    elseif (strpos($pricing_plan, '85K') !== false)  $plan_value = 85000;
+    elseif (strpos($pricing_plan, '75K') !== false)  $plan_value = 75000;
 
     $lead_data = [
         'name'         => trim($_POST['name']         ?? ''),
