@@ -79,10 +79,10 @@
           <input type="tel" name="phone" placeholder="Phone / WhatsApp">
           <select name="budget" required>
             <option value="" disabled selected>Monthly Budget</option>
-            <option>Under $1,000</option>
-            <option>$1,000 - $5,000</option>
-            <option>$5,000 - $10,000</option>
-            <option>$10,000+</option>
+            <option>Under ₹1,00,000</option>
+            <option>Under ₹5 Lakhs</option>
+            <option>Under ₹50 Lakhs</option>
+            <option>₹1 Cr+</option>
           </select>
         </div>
         <input type="url" name="website" placeholder="Your Website URL (e.g. https://yoursite.com)">
