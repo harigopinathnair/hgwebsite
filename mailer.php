@@ -14,7 +14,11 @@ function send_lead_notification(array $lead): void {
     $budget    = $lead['budget']    ?? '—';
     $goal      = $lead['goal']      ?? '—';
     $challenge = $lead['challenge'] ?? '—';
-    $plan      = $lead['pricing_plan'] ?? '—';
+    $website      = $lead['website']   ?? '';
+    $plan         = $lead['pricing_plan'] ?? '—';
+    $website_cell = $website
+        ? '<a href="' . htmlspecialchars($website) . '" style="color:#FF7A59;">' . htmlspecialchars($website) . '</a>'
+        : '—';
 
     $source_label = $source === 'audit' ? 'Free Audit Form' : 'Contact Form';
 
@@ -32,6 +36,7 @@ function send_lead_notification(array $lead): void {
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;width:130px;">Name</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$name}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;"><a href="mailto:{$email}" style="color:#FF7A59;">{$email}</a></td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$phone}</td></tr>
+      <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Website</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$website_cell}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Source</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$source_label}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Plan</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$plan}</td></tr>
       <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-weight:700;">Budget</td><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">{$budget}</td></tr>

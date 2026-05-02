@@ -60,6 +60,7 @@ try {
         status       VARCHAR(30)    NOT NULL DEFAULT 'new',
         value        DECIMAL(12,2)  NOT NULL DEFAULT 0,
         comment      TEXT,
+        website      VARCHAR(500)   NOT NULL DEFAULT '',
         utm_url      VARCHAR(1000)  NOT NULL DEFAULT '',
         utm_source   VARCHAR(255)   NOT NULL DEFAULT '',
         utm_medium   VARCHAR(255)   NOT NULL DEFAULT '',
@@ -73,6 +74,7 @@ try {
     // Auto-migrate UTM + pricing columns on existing tables
     $existing_cols = $pdo->query("DESCRIBE leads")->fetchAll(PDO::FETCH_COLUMN);
     $migrations = [
+        'website'      => "ALTER TABLE leads ADD COLUMN website      VARCHAR(500)  NOT NULL DEFAULT ''",
         'utm_url'      => "ALTER TABLE leads ADD COLUMN utm_url      VARCHAR(1000) NOT NULL DEFAULT ''",
         'utm_source'   => "ALTER TABLE leads ADD COLUMN utm_source   VARCHAR(255)  NOT NULL DEFAULT ''",
         'utm_medium'   => "ALTER TABLE leads ADD COLUMN utm_medium   VARCHAR(255)  NOT NULL DEFAULT ''",
@@ -100,6 +102,7 @@ try {
         'budget'       => trim($_POST['budget']       ?? ''),
         'goal'         => trim($_POST['goal']         ?? ''),
         'challenge'    => trim($_POST['challenge']    ?? ''),
+        'website'      => trim($_POST['website']      ?? ''),
         'utm_url'      => trim($_POST['utm_url']      ?? ''),
         'utm_source'   => trim($_POST['utm_source']   ?? ''),
         'utm_medium'   => trim($_POST['utm_medium']   ?? ''),
@@ -110,21 +113,35 @@ try {
     ];
 
     $stmt = $pdo->prepare("INSERT INTO leads
-        (name, email, phone, source, budget, goal, challenge,
+        (name, email, phone, source, budget, goal, challenge, website,
          utm_url, utm_source, utm_medium, utm_campaign, utm_content,
          pricing_plan, value, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')");
     $stmt->execute([
         $lead_data['name'], $lead_data['email'], $lead_data['phone'],
         $lead_data['source'], $lead_data['budget'], $lead_data['goal'],
-        $lead_data['challenge'], $lead_data['utm_url'], $lead_data['utm_source'],
-        $lead_data['utm_medium'], $lead_data['utm_campaign'], $lead_data['utm_content'],
-        $lead_data['pricing_plan'], $lead_data['plan_value'],
+        $lead_data['challenge'], $lead_data['website'], $lead_data['utm_url'],
+        $lead_data['utm_source'], $lead_data['utm_medium'], $lead_data['utm_campaign'],
+        $lead_data['utm_content'], $lead_data['pricing_plan'], $lead_data['plan_value'],
     ]);
 
     // Send email notification via Mailgun
     require_once __DIR__ . '/mailer.php';
     send_lead_notification($lead_data);
+
+    // Send Telegram notification
+    require_once __DIR__ . '/includes/telegram.php';
+    $source_label = $lead_data['source'] === 'audit' ? 'Free Audit Form' : 'Contact Form';
+    $tg = "🔔 <b>New Lead — HariGopinath.com</b>\n\n"
+        . "<b>Name:</b> "    . htmlspecialchars($lead_data['name'])    . "\n"
+        . "<b>Email:</b> "   . htmlspecialchars($lead_data['email'])   . "\n"
+        . "<b>Phone:</b> "   . (htmlspecialchars($lead_data['phone'])  ?: '—') . "\n"
+        . "<b>Website:</b> " . (htmlspecialchars($lead_data['website']) ?: '—') . "\n"
+        . "<b>Budget:</b> "  . (htmlspecialchars($lead_data['budget']) ?: '—') . "\n"
+        . "<b>Goal:</b> "    . (htmlspecialchars($lead_data['goal'])   ?: '—') . "\n"
+        . "<b>Source:</b> "  . $source_label . "\n"
+        . "\n<a href=\"https://harigopinath.com/admin/crm.php\">View in CRM →</a>";
+    telegram_notify($tg);
 
 } catch (Exception $e) {
     // Silently fail, don't break the success page for the user
@@ -143,7 +160,7 @@ ob_end_clean();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Message Received | HariGopinath.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style-2040.css">
+<link rel="stylesheet" href="style-2040.css?v=3">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
